@@ -79,4 +79,9 @@ SWITCH(
     ISINSCOPE(Dim_Desk[L1]), COALESCE(Budget_L1, Budget_L2_Total),
     ISINSCOPE(Dim_Desk[L0]), COALESCE(Budget_L0, Budget_L1_Total)
 )
+4. Ignore reportfilter
+CALCULATE(
+    SUM(Sales[Amount]),
+    ALL(Customer[Country])
+)
 
