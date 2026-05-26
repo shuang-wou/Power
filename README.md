@@ -50,6 +50,21 @@ isinscope('Astre Analytical View'[ALM_BUSINESS_3]),coalesce(Budget0,Budget1T),
 sumx(values('Astre Analytical View'[ALM_BUSINESS_3]), Budget0))
 
 
+RETURN
+IF(
+    NOT ISINSCOPE('Astre Analytical View'[ALM_BUSINESS_3]),
+    SUMX(
+        VALUES('Astre Analytical View'[ALM_BUSINESS_3]),
+        CALCULATE([Current Budget])
+    ),
+    SWITCH(
+        TRUE(),
+        ISINSCOPE('Astre Analytical View'[ALM_BUSINESS_5]), Budget2,
+        ISINSCOPE('Astre Analytical View'[ALM_BUSINESS_4]), COALESCE(Budget1, Budget2T),
+        ISINSCOPE('Astre Analytical View'[ALM_BUSINESS_3]), COALESCE(Budget0, Budget1T)
+    )
+)
+
 4. Ignore reportfilter
 CALCULATE(
     SUM(Sales[Amount]),
