@@ -71,3 +71,25 @@ CALCULATE(
     ALL(Customer[Country])
 )
 
+
+
+import plotly.express as px
+import pandas as pd
+
+df = pd.DataFrame({
+    "country": ["France", "Germany", "China", "United States", "Singapore"],
+    "NV": [35000, 27000, 20000, 15000, 8000]
+})
+
+fig = px.choropleth(
+    df,
+    locations="country",
+    locationmode="country names",
+    color="NV",
+    hover_name="country",
+    color_continuous_scale="Blues",
+    title="Corporate Funding by Country"
+)
+
+fig.show()
+
